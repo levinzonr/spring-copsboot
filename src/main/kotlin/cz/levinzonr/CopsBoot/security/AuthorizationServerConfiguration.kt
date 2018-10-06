@@ -30,6 +30,9 @@ class AuthorizationServerConfiguration : AuthorizationServerConfigurerAdapter() 
     private lateinit var tokenStore: TokenStore
 
 
+    @Autowired
+    private lateinit var securityConfiguration: SecurityConfiguration
+
     override fun configure(security: AuthorizationServerSecurityConfigurer?) {
         super.configure(security)
         security?.passwordEncoder(passwordEncoder)
@@ -40,11 +43,11 @@ class AuthorizationServerConfiguration : AuthorizationServerConfigurerAdapter() 
     override fun configure(clients: ClientDetailsServiceConfigurer?) {
         super.configure(clients)
         clients?.inMemory()
-                ?.withClient("copsboot-mobile-client")
+                ?.withClient(securityConfiguration.clientId)
                 ?.authorizedGrantTypes("password", "refresh_token")
                 ?.scopes("mobile_app")
                 ?.resourceIds(RESOURCE_ID)
-                ?.secret(passwordEncoder.encode("ccUyb6vS4S8nxfbKPCrN"))
+                ?.secret(passwordEncoder.encode(securityConfiguration.clientSecret))
     }
 
     override fun configure(endpoints: AuthorizationServerEndpointsConfigurer?) {
