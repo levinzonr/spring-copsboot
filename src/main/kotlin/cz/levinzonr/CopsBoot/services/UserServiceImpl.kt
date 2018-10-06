@@ -6,6 +6,7 @@ import cz.levinzonr.CopsBoot.domain.repository.UserRepository
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.security.crypto.password.PasswordEncoder
 import org.springframework.stereotype.Service
+import java.util.*
 
 @Service
 class UserServiceImpl : UserService {
@@ -25,5 +26,9 @@ class UserServiceImpl : UserService {
 
         ))
         return user
+    }
+
+    override fun getUserById(uuid: UUID): User? {
+        return userRepository.findById(uuid).get()
     }
 }

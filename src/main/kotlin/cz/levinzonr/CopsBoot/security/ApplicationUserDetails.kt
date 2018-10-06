@@ -8,7 +8,7 @@ import java.util.*
 class ApplicationUserDetails(user: cz.levinzonr.CopsBoot.domain.models.User)
     : User(user.email, user.password, createAuthorities(user.role)) {
 
-    val userId: UUID? = user.id
+    val userId: UUID = user.id ?: UUID.randomUUID()
 
     companion object {
         private const val ROLE_PREFIX = "ROLE_"

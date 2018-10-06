@@ -25,11 +25,15 @@ class ResourceServerConfiguration : ResourceServerConfigurerAdapter() {
 
     override fun configure(http: HttpSecurity?) {
         super.configure(http)
-        http?.authorizeRequests()
-                ?.antMatchers(HttpMethod.OPTIONS, "/api/**")?.permitAll()
-                ?.and()
-                ?.antMatcher("/api/**")?.authorizeRequests()
-                ?.anyRequest()?.authenticated()
+        http?.let {
+            http.authorizeRequests()
+                    .antMatchers(HttpMethod.OPTIONS, "/api/**").permitAll() .and()
+                    .antMatcher("/api/**")
+                    .authorizeRequests()
+                    .antMatchers(HttpMethod.POST, "/api/users").permitAll()
+                    .anyRequest()?.authenticated()
+        }
+
     }
 
 
