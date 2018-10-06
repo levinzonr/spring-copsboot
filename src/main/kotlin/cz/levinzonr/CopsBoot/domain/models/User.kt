@@ -6,6 +6,7 @@ import javax.persistence.*
 @Entity
 data class User(
         @Id
+        @GeneratedValue
         val id: UUID? = null,
         val name: String? = null,
         val email: String? = null,

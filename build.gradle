@@ -1,6 +1,6 @@
 buildscript {
 	ext {
-		kotlinVersion = '1.2.51'
+		kotlinVersion = '1.2.41'
 		springBootVersion = '2.0.5.RELEASE'
 	}
 	repositories {
@@ -48,6 +48,9 @@ dependencies {
 	implementation('org.springframework.boot:spring-boot-starter-web')
 	implementation('com.fasterxml.jackson.module:jackson-module-kotlin')
 	implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
+	implementation "org.springframework.security.oauth.boot:spring-security-oauth2-autoconfigure:2.0.1.RELEASE"
+	implementation "org.springframework.security.oauth:spring-security-oauth2"
+	implementation "org.springframework.boot:spring-boot-starter-security"
 	implementation("org.jetbrains.kotlin:kotlin-reflect")
 	runtimeOnly('com.h2database:h2')
 	testImplementation('org.springframework.boot:spring-boot-starter-test')
